@@ -4,7 +4,7 @@ np.set_printoptions(threshold=np.inf)
 
 #GenderSubmission = pd.read_csv("titanic/gender_submission.csv", header=0, nrows=420)
 #Train = pd.read_csv("titanic/train.csv", header=0, nrows=893)
-#Test = pd.read_csv("titanic/test.csv", header=0, nrows=420)
+Test = pd.read_csv("titanic/test.csv", header=0, nrows=420)
 
 #print(Test.to_string())
 #print(GenderSubmission.to_string())
@@ -18,7 +18,7 @@ class DataImport:
     def importTest(self):
         return pd.read_csv("titanic/test.csv", header=0, nrows=420)
 
-    def importTrein(self):
+    def importTrain(self):
         return pd.read_csv("titanic/train.csv", header=0, nrows=893)
 
     def importGenderSubmission(self):

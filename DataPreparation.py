@@ -2,5 +2,25 @@ import ImportTitanicData
 
 dataImport = ImportTitanicData.DataImport()
 
-print(dataImport.importTest().to_string())
+# print(dataImport.importTest().to_string())
 
+dataSet = dataImport.importTest()
+
+# kolumny 'Embarked', 'Ticket', 'Sex', 'Name', 'Cabin' według mnie dane nie są istotne
+# dla uczenia sieci neuronowej dlatego pomijam ich uzupełnianie oraz usuwam je z danych wejściowych
+
+dataSet.drop(['Embarked'], axis=1, inplace=True)
+dataSet.drop(['Ticket'], axis=1, inplace=True)
+dataSet.drop(['Sex'], axis=1, inplace=True)
+dataSet.drop(['Name'], axis=1, inplace=True)
+dataSet.drop(['Cabin'], axis=1, inplace=True)
+
+# w kolumnach 'PasengerId', 'Pclass', 'SibSp', 'Parch' nie brakuje danych i ich nie zmieniam
+
+# zmiana NaN w kolumnie 'Fare', poprzez medianę
+dataSet['Fare'].fillna(dataSet['Fare'].mean(), inplace=True)
+
+# zmiana NaN w kolumnie 'Age', poprzez medianę
+dataSet['Age'].fillna(dataSet['Age'].mean(), inplace=True)
+
+print(dataSet.to_string())
