@@ -39,7 +39,11 @@ class DataAnaliysis():
 dataAnaysis = DataAnaliysis()
 
 # print('czesio')
-print('Analiza danych przed wypełnieniem NaN')
-print('Tabela Train\n', dataAnaysis.showTrain())
-print('\n\nshape Train\n', dataAnaysis.shapeTrain())
-print('\n\ndtypes Train\n', dataAnaysis.dtypesTrain())
+# print('Analiza danych przed wypełnieniem NaN')
+# print('Tabela Train\n', dataAnaysis.showTrain())
+# print('\n\nshape Train\n', dataAnaysis.shapeTrain())
+# print('\n\ndtypes Train\n', dataAnaysis.dtypesTrain())
+
+dataPreparation = DataPreparation.DataPreparation()
+print(dataPreparation.prepareTrainData().to_string())
+
