@@ -12,7 +12,8 @@ Analiza danych – podstawowe statystyki dot. danych i wypełnienie braków (NaN
 
 Prediction z wyświetleniem accuracy 
 
-Stworzenie GUI gdzie można określić podstawowe parametry sieci lub wybranie opcji Default. GUI powinno wyświetlić accuracy (zarówno przy podaniu wartości dla ilości propagacji lub przy opcji default) 
+Stworzenie GUI gdzie można określić podstawowe parametry sieci lub wybranie opcji Default.
+GUI powinno wyświetlić accuracy (zarówno przy podaniu wartości dla ilości propagacji lub przy opcji default)
 
 Moduł dla Pythona 3 i umieszczenie go na środowisku testowym PyPI: 
 
@@ -22,4 +23,7 @@ Executable – Pyinstaller:
 
 https://www.pyinstaller.org/ 
 
-Dokumentacja – screenshot (z widokiem na statystyki), projekt spakowany jako *.zip (wszystkie pliki – łącznie z executable i plikami wheel i tar.gz dla modułu), imiona i nazwiska członków zespołu (max 3 osoby) oraz opisy jak postępowaliście z brakami w danych i jakie to efekty dało (różne sposoby). 
+Dokumentacja – screenshot (z widokiem na statystyki), projekt spakowany jako *.zip
+(wszystkie pliki – łącznie z executable i plikami wheel i tar.gz dla modułu),
+imiona i nazwiska członków zespołu (max 3 osoby) oraz opisy jak postępowaliście z brakami w danych
+i jakie to efekty dało (różne sposoby).
