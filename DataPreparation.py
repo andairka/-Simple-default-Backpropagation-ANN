@@ -40,6 +40,9 @@ class DataPreparation:
         dataSet.drop(['Name'], axis=1, inplace=True)
         dataSet.drop(['Cabin'], axis=1, inplace=True)
 
+        # kolumnę 'Survived' pomijamy, bo to jest wynik uczenia się naszej sieci
+        dataSet.drop(['Survived'], axis=1, inplace=True)
+
         # w kolumnach 'PasengerId', 'Pclass', 'SibSp', 'Parch' nie brakuje danych i ich nie zmieniam
 
         # zmiana NaN w kolumnie 'Fare', poprzez medianę
