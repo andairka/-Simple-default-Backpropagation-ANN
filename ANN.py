@@ -19,14 +19,18 @@ class ANN:
 
     def calculateAccuracy(self):
         dataPreparation = DataPreparation()
-        testData = dataPreparation.prepareTestData()
-        testInputs = testData.drop("Survived", axis=1)
-        testOutputs = testData["Survived"]
-        return self.accuracy(testInputs, testOutputs)
+
+        testData = dataPreparation.prepareTestData().to_numpy(int)
+        testOutput = dataPreparation.prepareSubmissionData().to_numpy()
+        print(testData)
+        print(testOutput)
+        return self.accuracy(testData, testOutput)
 
     def accuracy(self, testInput, testOutput):
         allTests = range(testInput)
         sucessCount = 0
+
+
         for i in range(testInput):
             output = self.neuralNetwork.think(testInput[i])
             if output > 0.5:
@@ -77,9 +81,7 @@ class NeuralNetwork():
         synaptic weights each time to get a better result
         """
         for iteration in range(training_iterations):
-            # Pass training set through the neural network
             output = self.think(training_inputs)
-
 
             # Calculate the error rate
             error = training_outputs - output
@@ -89,7 +91,7 @@ class NeuralNetwork():
             adjustments = np.dot(training_inputs.T, error * self.sigmoid_derivative(output))
 
             # Adjust synaptic weights
-            self.synaptic_weights += adjustments
+            self.synaptic_weights = np.add(self.synaptic_weights, adjustments)
 
     def think(self, inputs):
         """
@@ -102,8 +104,11 @@ class NeuralNetwork():
 
 if __name__ == "__main__":
     ann = ANN()
-    ann.trainNetwork(10000)
-    # print(ann.calculateAccuracy())
+    # ann.trainNetwork(10000)
+    ann.trainNetwork(2)
+
+    # ann.calculateAccuracy()
+    print(ann.calculateAccuracy())
 # if __name__ == "__main__":
 #     # Initialize the single neuron neural network
 #     neural_network = NeuralNetwork()
