@@ -3,14 +3,45 @@ import numpy as np
 
 
 class ANN:
-    def accuracy(self):
+    def __init__(self):
+        self.neuralNetwork = NeuralNetwork()
+
+    def trainNetwork(self, numberOfIteration):
         dataPreparation = DataPreparation()
         # testData = dataPreparation.prepareTestData()
         trainData = dataPreparation.prepareTrainData()
-        X = trainData.drop("Survived", axis=1)
-        Y = trainData["Survived"]
+        trainingInputs = trainData.drop("Survived", axis=1).to_numpy(int)
+        trainingOutputs = trainData["Survived"].to_numpy(int)
+        self.neuralNetwork.train(trainingInputs, trainingOutputs, numberOfIteration)
 
-        return "czesio"
+    def check(self, testInput):
+        return self.neuralNetwork.think(testInput)
+
+    def calculateAccuracy(self):
+        dataPreparation = DataPreparation()
+        testData = dataPreparation.prepareTestData()
+        testInputs = testData.drop("Survived", axis=1)
+        testOutputs = testData["Survived"]
+        return self.accuracy(testInputs, testOutputs)
+
+    def accuracy(self, testInput, testOutput):
+        allTests = range(testInput)
+        sucessCount = 0
+        for i in range(testInput):
+            output = self.neuralNetwork.think(testInput[i])
+            if output > 0.5:
+                iOutput = 1
+            else:
+                iOutput = 0
+            if iOutput == testOutput[i]:
+                sucessCount = sucessCount + 1
+            return sucessCount/allTests
+
+
+
+
+
+
 
 
 class NeuralNetwork():
@@ -21,7 +52,10 @@ class NeuralNetwork():
 
         # Set synaptic weights to a 3x1 matrix,
         # with values from -1 to 1 and mean 0
-        self.synaptic_weights = 2 * np.random.random((3, 1)) - 1
+        # self.synaptic_weights = 2 * np.random.random((3, 1)) - 1
+        self.synaptic_weights = 2 * np.random.random((7, 1)) - 1
+        print(self.synaptic_weights)
+
 
     def sigmoid(self, x):
         """
@@ -46,6 +80,7 @@ class NeuralNetwork():
             # Pass training set through the neural network
             output = self.think(training_inputs)
 
+
             # Calculate the error rate
             error = training_outputs - output
 
@@ -65,33 +100,38 @@ class NeuralNetwork():
         output = self.sigmoid(np.dot(inputs, self.synaptic_weights))
         return output
 
-
 if __name__ == "__main__":
-    # Initialize the single neuron neural network
-    neural_network = NeuralNetwork()
-
-    print("Random starting synaptic weights: ")
-    print(neural_network.synaptic_weights)
-
-    # The training set, with 4 examples consisting of 3
-    # input values and 1 output value
-    training_inputs = np.array([[0, 0, 1],
-                                [1, 1, 1],
-                                [1, 0, 1],
-                                [0, 1, 1]])
-
-    training_outputs = np.array([[0, 1, 1, 0]]).T
-
-    # Train the neural network
-    neural_network.train(training_inputs, training_outputs, 10000)
-
-    print("Synaptic weights after training: ")
-    print(neural_network.synaptic_weights)
-
-    A = str(input("Input 1: "))
-    B = str(input("Input 2: "))
-    C = str(input("Input 3: "))
-
-    print("New situation: input data = ", A, B, C)
-    print("Output data: ")
-    print(neural_network.think(np.array([A, B, C])))
+    ann = ANN()
+    ann.trainNetwork(10000)
+    # print(ann.calculateAccuracy())
+# if __name__ == "__main__":
+#     # Initialize the single neuron neural network
+#     neural_network = NeuralNetwork()
+#
+#     print("Random starting synaptic weights: ")
+#     print(neural_network.synaptic_weights)
+#
+#     # The training set, with 4 examples consisting of 3
+#     # input values and 1 output value
+#     training_inputs = np.array([[0, 0, 1],
+#                                 [1, 1, 1],
+#                                 [1, 0, 1],
+#                                 [0, 1, 1]])
+#     # dataPreparation = DataPreparation()
+#     # trainingInput = dataPreparation.prepareTrainData()
+#
+#     training_outputs = np.array([[0, 1, 1, 0]]).T
+#
+#     # Train the neural network
+#     neural_network.train(training_inputs, training_outputs, 10000)
+#
+#     print("Synaptic weights after training: ")
+#     print(neural_network.synaptic_weights)
+#
+#     A = str(input("Input 1: "))
+#     B = str(input("Input 2: "))
+#     C = str(input("Input 3: "))
+#
+#     print("New situation: input data = ", A, B, C)
+#     print("Output data: ")
+#     print(neural_network.think(np.array([A, B, C])))
