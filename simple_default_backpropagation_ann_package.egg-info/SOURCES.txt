@@ -1,0 +1,6 @@
+setup.py
+simple-default-backpropagation-ann-package/__init__.py
+simple_default_backpropagation_ann_package.egg-info/PKG-INFO
+simple_default_backpropagation_ann_package.egg-info/SOURCES.txt
+simple_default_backpropagation_ann_package.egg-info/dependency_links.txt
+simple_default_backpropagation_ann_package.egg-info/top_level.txt
