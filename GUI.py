@@ -55,6 +55,3 @@ class GUI:
         result = str(ann.accuracy()) + '%'
         self.accuracy = self.accuracy.set(result)
 
-
-# Create an instance of the GUI
-gui = GUI()
