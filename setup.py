@@ -9,6 +9,8 @@ setuptools.setup(
     author="Adrianna Pater",
     author_email="andairka@wp.pl",
     description="A small and simple backpropagation neutral network which predicts titanic Survived.",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/andairka/Simple-default-Backpropagation-ANN",
     packages=setuptools.find_packages(),
     classifiers=[
