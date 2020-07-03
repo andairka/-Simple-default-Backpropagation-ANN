@@ -66,6 +66,7 @@ class DataPreparation:
         # print(dataSet.astype(int).to_string())
         return dataSet
 
+
     def prepareSubmissionData(self):
         dataImport = ImportTitanicData.DataImport()
         dataSet = dataImport.importGenderSubmission()

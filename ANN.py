@@ -1,5 +1,6 @@
 from DataPreparation import DataPreparation
 import numpy as np
+from scipy.special import expit
 
 
 class ANN:
@@ -29,9 +30,10 @@ class ANN:
         calculated = self.neuralNetwork.think(testData)
         accuracy = (testOutput.size - np.sum(np.abs(testOutput - calculated)))/testOutput.size
 
-        accuracy = accuracy * 100
-        print(accuracy)
-        return accuracy * 100
+        accuracy = accuracy * 10000
+        accuracy = np.array(accuracy, dtype=int)
+        accuracy = accuracy/100
+        return accuracy
 
     #
     # def accuracy(self, testInput, testOutput):
@@ -54,7 +56,9 @@ class NeuralNetwork():
         Takes in weighted sum of the inputs and normalizes
         them through between 0 and 1 through a sigmoid function
         """
-        return 1 / (1 + np.exp(-x))
+        # return 1 / (1 + np.exp(-x))
+        return expit(x)
+
 
     def sigmoid_derivative(self, x):
         """
@@ -103,9 +107,9 @@ if __name__ == "__main__":
     ann.trainNetwork(10000)
     ann.accuracy()
     # print('wynikkk')
-    # print(ann.neuralNetwork.think(np.array([1, 3, 0, 22, 1, 0, 7])))
-    # print(ann.neuralNetwork.think(np.array([2, 1, 1, 38, 1, 0, 71])))
-    # print(ann.neuralNetwork.think(np.array([3, 3, 1, 26, 0, 0, 7])))
+    print(ann.neuralNetwork.think(np.array([1, 3, 0, 22, 1, 0, 7])))
+    print(ann.neuralNetwork.think(np.array([2, 1, 1, 38, 1, 0, 71])))
+    print(ann.neuralNetwork.think(np.array([3, 3, 1, 26, 0, 0, 7])))
     # ann.calculateAccuracy()
     # print(ann.calculateAccuracy())
 # if __name__ == "__main__":
